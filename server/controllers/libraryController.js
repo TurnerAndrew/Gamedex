@@ -69,16 +69,36 @@ module.exports = {
         return res.status(200).send(library)
         },
 
-        editGame: (req, res) => {
-            const {game} = req.body
-
-            
-
-
-            return res.status(200).send(library)
-        },
-
-        deleteGame: (req, res) => {
-
+    editGame: (req, res) => {
+        const oldGame = req.params.game
+        const {newGame} = req.body
+        const index = library.findIndex((element) => element.games.includes(oldGame))
+        
+        if(index === -1){
+            return res.status(404).send(`${oldGame} not found.`)
         }
+
+        const gamesMapped = library[index].games.map((element) => element === oldGame ? element = newGame : element)
+
+        console.log(gamesMapped)
+
+        library[index].games = gamesMapped
+        
+        return res.status(200).send(library)
+    },
+    
+    deleteGame: (req, res) => {
+        const game = req.params.game
+        const index = library.findIndex((element) => element.games.includes(game))
+        
+        if(index === -1){
+            return res.status(404).send(`${game} not found.`)
+        }
+        
+        const gameIndex = library[index].games.findIndex((element) => element.games === game)
+
+        library[index].games.splice(gameIndex, 1)
+        
+        return res.status(200).send(library)
     }
+}

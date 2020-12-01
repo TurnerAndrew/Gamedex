@@ -11,5 +11,5 @@ app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} has ears on.`))//activ
 //Endpoints
 app.get('/api/games', libCtrl.getAllGames)
 app.post('/api/games', libCtrl.addGame)
-// app.put('api/games/:id', libCtrl.editGame)
-// app.delete('/api/games/:id', libCtrl.deleteGame)
+app.put('/api/games/:game', libCtrl.editGame)
+app.delete('/api/games/:game', libCtrl.deleteGame)
