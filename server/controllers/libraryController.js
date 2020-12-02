@@ -81,8 +81,7 @@ module.exports = {
         },
 
     editGame: (req, res) => {
-        const oldGame = req.params.game
-        const {newGame} = req.body
+        const {oldGame, newGame} = req.params
         const index = library.findIndex((element) => element.games.includes(oldGame))
         
         if(index === -1){

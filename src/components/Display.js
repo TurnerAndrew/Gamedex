@@ -35,16 +35,21 @@ class Display extends Component {
     deleteGame(game, service) {
         axios.delete(`/api/games?game=${game}&service=${service}`)
         .then((res) => {this.setState({library: res.data})
-    })
-}
+        })
+    }
+
+    editGame(oldGame, newGame) {
+        axios.put(`api/games?game=${oldGame}&newGame=${newGame}`)
+        .then((res) => this.setState({library: res.data}))
+    }
 
     render(){
         return (
             <div className = 'main'>
                 <Form addGame={this.addGame} deleteGame={this.deleteGame}/>
                 <div className = 'games'>
-                    <Services library={this.state.library}/>
-                    <Library library={this.state.library}/>
+                    <Services library={this.state.library} editGame={this.editGame}/>
+                    <Library library={this.state.library} editGame={this.editGame}/>
                 </div>
             </div>
         )

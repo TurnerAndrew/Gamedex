@@ -8,10 +8,13 @@ const Library = (props) => {
         })
     
     return <div className='library'>
-            <div>
                 <h2>Library</h2>
-            </div>
-            {games.sort()}
+                <div>
+                </div>
+                {games.sort()}
+                <div>
+            
+                </div>
             </div>
     
 }

@@ -13,7 +13,7 @@ const Services = (props) => {
                     <img src = {element.logo} alt='service-logo'/>
                 </div>
             </span>
-            <Game key={element.id} games={element.games}/>
+            <Game key={element.id} games={element.games} editGame={props.editGame}/>
         </div>
         )
     })
