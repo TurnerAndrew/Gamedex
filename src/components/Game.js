@@ -1,9 +1,13 @@
 import React from 'react'
-import { editGame } from '../../server/controllers/libraryController'
 
-const Game = (props) {
-    const gameMap = props.library[index].games.map((element) => {
-        return <p onClick={props.editGame}>{element}</p>
+const Game = (props) => {
+    const gamesMapped = props.games.map((element) => {
+        return <p>{element}</p>
     })
 
+    return <div className = 'game-container'>{gamesMapped}</div>
+
+
 }
+
+export default Game

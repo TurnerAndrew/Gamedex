@@ -3,7 +3,7 @@ const library = [
         id : 1,
         service : 'Steam',
         games : [],
-        logo: "https://1000logos.net/wp-content/uploads/2020/08/Steam-Logo.png"
+        logo: "https://cdn.worldvectorlogo.com/logos/steam.svg"
     },
     {
         id : 2,
@@ -28,7 +28,7 @@ const library = [
         id: 5,
         service: 'Origin',
         games: [],
-        logo: "https://en.wikipedia.org/wiki/Origin_Energy#/media/File:Origin_Energy_logo.svg"
+        logo: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Origin.svg"
     },
     {
         id: 6,

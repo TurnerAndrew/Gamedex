@@ -33,17 +33,17 @@ class Form extends Component {
     
     render(){
     return (
-        <div>
-           <span>
-                <form>
+        <div className = 'form-container'>
+           <span className = 'form'>
+                <form className = 'form-each'>
                     <input type='text' id='game' placeholder='Enter Game Title' onChange={this.handleGameChange}></input>
                     <select id='service' name='service' onChange={this.handleServiceChange}>
                         <option value ='' disabled selected>Select a Service</option>
                         <option>Steam</option>
                         <option>Epic Games</option>
+                        <option>GOG</option>
                         <option>Uplay</option>
                         <option>Origin</option>
-                        <option>GOG</option>
                         <option>Twitch</option>
                         <option>XBox Games Pass</option>
                         <option>GMG</option>
@@ -53,16 +53,16 @@ class Form extends Component {
                 </form>
             </span>
             
-            <span>
-                <form>
+            <span className = 'form'>
+                <form className = 'form-each'>
                     <input type='text' id='game' placeholder='Enter Game Title' onChange={this.handleGameChange}></input>
                     <select id='service' name='service' onChange={this.handleServiceChange}>
                         <option value ='' disabled selected>Select a Service</option>
                         <option>Steam</option>
                         <option>Epic Games</option>
+                        <option>GOG</option>
                         <option>Uplay</option>
                         <option>Origin</option>
-                        <option>GOG</option>
                         <option>Twitch</option>
                         <option>XBox Games Pass</option>
                         <option>GMG</option>
