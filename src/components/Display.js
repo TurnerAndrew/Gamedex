@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import Form from './Form'
-import Services from './Services']
-import Library from '/Library'
+import Services from './Services'
+import List from './Library'
+import Library from './Library'
 
 
 class Display extends Component {
@@ -41,10 +42,10 @@ class Display extends Component {
         return (
             <div className = 'main'>
                 <Form addGame={this.addGame} deleteGame={this.deleteGame}/>
-                {/* <div> */}
+                <div className = 'games'>
                     <Services library={this.state.library}/>
-                    {/* <Library /> */}
-                {/* </div> */}
+                    <Library library={this.state.library}/>
+                </div>
             </div>
         )
     }
