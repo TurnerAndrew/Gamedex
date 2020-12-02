@@ -97,8 +97,8 @@ module.exports = {
     },
     
     deleteGame: (req, res) => {
-        const game = req.params.game
-        const index = library.findIndex((element) => element.games.includes(game))
+        const {game, service} = req.query
+        const index = library.findIndex((element) => element.service === service)
         
         if(index === -1){
             return res.status(404).send(`${game} not found.`)
