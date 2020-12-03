@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import Form from './Form'
 import Services from './Services'
-import List from './Library'
 import Library from './Library'
 
 
@@ -16,6 +15,8 @@ class Display extends Component {
         }
         this.addGame = this.addGame.bind(this)
         this.deleteGame = this.deleteGame.bind(this)
+        this.editGame = this.editGame.bind(this)
+        this.editService = this.editService.bind(this)
         }
 
     componentDidMount(){
@@ -38,15 +39,20 @@ class Display extends Component {
         })
     }
 
-    editGame(oldGame, newGame) {
-        axios.put(`api/games?game=${oldGame}&newGame=${newGame}`)
+    editGame(oldGame, newGame, service) {
+        axios.put(`/api/games?oldGame=${oldGame}&newGame=${newGame}&service=${service}`)
+        .then((res) => this.setState({library: res.data}))
+    }
+
+    editService(oldService, newService) {
+        axios.put(`/api/games?oldService=${oldService}&newService=${newService}`)
         .then((res) => this.setState({library: res.data}))
     }
 
     render(){
         return (
             <div className = 'main'>
-                <Form addGame={this.addGame} deleteGame={this.deleteGame}/>
+                <Form addGame={this.addGame} deleteGame={this.deleteGame} editGame={this.editGame} editService={this.editService} library={this.state.library}/>
                 <div className = 'games'>
                     <Services library={this.state.library} editGame={this.editGame}/>
                     <Library library={this.state.library} editGame={this.editGame}/>

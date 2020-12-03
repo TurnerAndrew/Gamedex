@@ -81,18 +81,48 @@ module.exports = {
         },
 
     editGame: (req, res) => {
-        const {oldGame, newGame} = req.params
-        const index = library.findIndex((element) => element.games.includes(oldGame))
+        const {oldGame, newGame, service} = req.query
+        const index = library.findIndex((element) => element.service === service)
         
         if(index === -1){
             return res.status(404).send(`${oldGame} not found.`)
         }
 
-        const gamesMapped = library[index].games.map((element) => element === oldGame ? element = newGame : element)
+        const gameIndex = library[index].games.findIndex((element) => element === oldGame)
 
-        library[index].games = gamesMapped
+        // const gamesMapped = library[index].games.map((element) => element === oldGame ? element = newGame : element = oldGame )
+
+        library[index].games[gameIndex] = newGame
         
         return res.status(200).send(library)
+    },
+
+    editService: (req, res) => {
+        const {game, oldService, newService} = req.params
+        const serviceIndex = library.findIndex((element) => element.service === oldService)
+        //find index of the oldService
+        const gameIndex = library[serviceIndex].games.findIndex((element) => element.games === (game))
+        //find index of the game in the service
+        library[serviceIndex].games.splice(gameIndex, 1)
+        //splice the game from oldService
+        const newIndex = library.findIndex((element) => element.service === newService)
+        //find index of newService
+        library[newIndex].games.push(game)
+        //push the game to newService 
+        
+
+        if (serviceIndex === -1){
+            return res.status(404).send(`${oldService} not found.`)
+        }
+
+        if(gameIndex === -1){
+            return res.status(404).send(`${game} not found in ${oldService}`)
+        }
+
+        if(newIndex === -1){
+            return res.status(404).send(`${newService} not found.`)
+        }
+
     },
     
     deleteGame: (req, res) => {
@@ -100,10 +130,14 @@ module.exports = {
         const index = library.findIndex((element) => element.service === service)
         
         if(index === -1){
-            return res.status(404).send(`${game} not found.`)
+            return res.status(404).send(`${game} not found in ${service}`)
         }
         
-        const gameIndex = library[index].games.findIndex((element) => element.games === game)
+        const gameIndex = library[index].games.findIndex((element) => element === game)
+
+        if (gameIndex === -1){
+            return res.status(404).send(`${game} not found.`)
+        } 
 
         library[index].games.splice(gameIndex, 1)
         
