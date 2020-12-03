@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+
 
 class Form extends Component {
     constructor(){
@@ -60,18 +60,19 @@ class Form extends Component {
     
     render(){
         const games = this.props.library.map((element) => {
-            return element.games.map((element) => {
-            return <option>{element}</option>
+            return element.games.map((element, index) => {
+            return <option key={index}>{element}</option>
             })
         })
 
         const services = this.props.library.map((element) => {
-            return <option>{element.service}</option>
+            return <option key={element.id}>{element.service}</option>
         })
 
     return (
         <div className = 'form-container'>
-           <span className = 'form'>
+            <h3>Add Game</h3>
+           <div className = 'form'>
                 <form className = 'form-each'>
                     <input type='text' id='game' placeholder='Enter Game Title' onChange={this.handleGameChange}></input>
                     <select id='service' name='service' onChange={this.handleServiceChange}>
@@ -80,9 +81,10 @@ class Form extends Component {
                     </select>
                     <button onClick= {this.handleAdd}>Add</button>
                 </form>
-            </span>
+            </div>
             
-            <span className = 'form'>
+            <h3>Remove Game</h3>
+            <div className = 'form'>
                 <form className = 'form-each'>
                     <input type='text' id='game' placeholder='Enter Game Title' onChange={this.handleGameChange}></input>
                     <select id='service' name='service' onChange={this.handleServiceChange}>
@@ -91,9 +93,10 @@ class Form extends Component {
                     </select>
                     <button onClick= {this.handleDelete}>Remove</button>
                 </form>
-            </span>
+            </div>
 
-            <span className = 'form'>
+            <h3>Edit Game</h3>
+            <div className = 'form'>
                 <form className = 'form-each'>
                     <select id='game' name='game' onChange={this.handleGameChange}>
                         <option value ='' disabled selected>Select a Game to Edit</option>
@@ -106,7 +109,7 @@ class Form extends Component {
                     </select>
                     <button onClick= {this.handleGameEdit}>Edit Title</button>
                 </form>
-            </span>
+            </div>
         
         </div>
         )

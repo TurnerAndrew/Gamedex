@@ -7,9 +7,9 @@ const Services = (props) => {
         return (
         <div className = 'service'>
             <div className = 'service-name'>
-                <h3>{element.service}</h3>
+                <h3 key={element.id}>{element.service}</h3>
                 <div className = 'logo-container'>
-                    <img src = {element.logo} alt='service-logo'/>
+                    <img key ={element.id} src = {element.logo} alt='service-logo'/>
                 </div>
             </div>
             <Game key={element.id} games={element.games} editGame={props.editGame}/>
